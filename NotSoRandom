@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UntrueRandom
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            ConsoleKeyInfo stop;
+            
+           
+            {
+                
+                string filePath = @"D:\NotSoRandom.txt";
+                int numbergot = 0;
+                int addline = 0;
+                int increase = 1;
+                StreamWriter clear_reader = File.CreateText(filePath);
+                clear_reader.Flush();
+                clear_reader.Close();
+                string result ;
+                double prediction = 0;
+                double one    = 2;
+                double two    = 2;
+                double three  = 2;
+                double four   = 2;
+                double five   = 2;
+                double total;
+                string file = File.ReadAllText(filePath);
+                int nr = 0;
+                if (addline == 0)
+                {
+                    file = file + ("1 \n" + "2 \n" + "3 \n" + "4 \n" + "5 \n" + "1 \n" + "2 \n" + "3 \n" + "4 \n" + "5 \n");
+                    File.WriteAllText(filePath, file); // note this overwrites the file
+
+
+                    addline = 1;
+                }
+
+
+
+
+
+
+
+
+
+                do
+                {
+                    Console.Clear();
+
+                    total = one + two + three + four + five;
+                    double achance = one / total * 100;
+                    double bchance = two / total * 100;
+                    double cchance = three / total * 100;
+                    double dchance = four / total * 100;
+                    double echance = five / total * 100;
+                    total = one + two + three + four + five;
+                    string[] lines = new string[increase];
+                    StreamReader a_reader = new StreamReader(filePath);
+
+                    for (int idx = 0; idx < increase; idx++)
+
+                        lines[idx] = a_reader.ReadLine();
+                    a_reader.Close();
+
+                    Random rnd = new Random();
+                    int rndrnd = rnd.Next(0, increase);
+                    result = lines[rndrnd];
+                    int check = Convert.ToInt32(result);
+                    nr++;
+                    
+
+
+
+
+
+
+                    increase += 4;
+
+                    
+                    if (check == 1)
+                    {
+                        file = file + ("2 \n" + "3 \n" + "4 \n" + "5 \n");
+                        File.WriteAllText(filePath, file);
+                        
+                        two += 1;
+                        three += 1;
+                        four += 1;
+                        five += 1;
+                        total += 4;
+                        numbergot = 1;
+
+                    }
+                    if (check == 2)
+                    {
+                        file = file + ("1 \n" + "3 \n" + "4 \n" + "5 \n");
+                        File.WriteAllText(filePath, file);
+                        one += 1;
+                        three += 1;
+                        four += 1;
+                        five += 1;
+                        total += 4;
+                        numbergot = 2;
+                    }
+                    if (check == 3)
+                    {
+                        file = file + ("1 \n" + "2 \n" + "4 \n" + "5 \n");
+                        File.WriteAllText(filePath, file);
+                        one += 1;
+                        two += 1;
+                        four += 1;
+                        five += 1;
+                        total += 4;
+                        numbergot = 3;
+                    }
+                    if (check == 4)
+                    {
+                        file = file + ("1 \n" + "2 \n" + "3 \n" + "5 \n");
+                        File.WriteAllText(filePath, file);
+                        one += 1;
+                        two += 1;
+                        three += 1;
+                        five += 1;
+                        total += 4;
+                        numbergot = 4;
+                    }
+                    if (check == 5)
+                    {
+                        file = file + ("1 \n" + "2 \n" + "3 \n" + "4 \n" );
+                        File.WriteAllText(filePath, file);
+                        one += 1;
+                        two += 1;
+                        three += 1;
+                        four += 1;
+                        total += 4;
+                        numbergot = 5;
+                    }
+
+                    
+                    if (check == 1 || check == 2 || check == 3 || check == 4 || check == 5 && numbergot != 0)
+                    Console.WriteLine("The probability your next number :");
+                    Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+                    Console.WriteLine("1: " + achance + " %");
+                    Console.WriteLine("2: " + bchance + " %");
+                    Console.WriteLine("3: " + cchance + " %");
+                    Console.WriteLine("4: " + dchance + " %");
+                    Console.WriteLine("5: " + echance + " %");
+                    Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+                    Console.WriteLine("your number is " + numbergot);
+
+                    stop = Console.ReadKey();
+                } while (stop.Key != ConsoleKey.Escape);
+            }
+        }
+    }
+}
