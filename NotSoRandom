@@ -25,7 +25,6 @@ namespace UntrueRandom
                 clear_reader.Flush();
                 clear_reader.Close();
                 string result ;
-                double prediction = 0;
                 double one    = 2;
                 double two    = 2;
                 double three  = 2;
