@@ -16,44 +16,32 @@ namespace UntrueRandom
             
            
             {
-                
-                string filePath = @"D:\NotSoRandom.txt";
-                int numbergot = 0;
-                int addline = 0;
-                int increase = 1;
-                StreamWriter clear_reader = File.CreateText(filePath);
-                clear_reader.Flush();
-                clear_reader.Close();
-                string result ;
-                double one    = 2;
-                double two    = 2;
-                double three  = 2;
-                double four   = 2;
-                double five   = 2;
+                string result;
+                string filePath = @"D:\NotSoRandom.txt"; //easy access too  path
+                string file = File.ReadAllText(filePath); // when called opens the text file-reads the data- closes file.
+               
+                int increase = 1; // for testing 
+                int nr = 0; // for testing
+                int t = 0; // intialize text file
+
+                double one    = 1;
+                double two    = 1;
+                double three  = 1;
+                double four   = 1;
+                double five   = 1;
                 double total;
-                string file = File.ReadAllText(filePath);
-                int nr = 0;
-                if (addline == 0)
-                {
-                    file = file + ("1 \n" + "2 \n" + "3 \n" + "4 \n" + "5 \n" + "1 \n" + "2 \n" + "3 \n" + "4 \n" + "5 \n");
-                    File.WriteAllText(filePath, file); // note this overwrites the file
 
-
-                    addline = 1;
-                }
-
-
-
-
-
-
-
-
+                
 
                 do
                 {
+                    if (t == 0) {
+                        file = ("1 \n" + "2 \n" + "3 \n" + "4 \n" + "5 \n");
+                        File.WriteAllText(filePath, file);
+                        t = 1;
+                    }
                     Console.Clear();
-
+                    
                     total = one + two + three + four + five;
                     double achance = one / total * 100;
                     double bchance = two / total * 100;
@@ -61,6 +49,7 @@ namespace UntrueRandom
                     double dchance = four / total * 100;
                     double echance = five / total * 100;
                     total = one + two + three + four + five;
+
                     string[] lines = new string[increase];
                     StreamReader a_reader = new StreamReader(filePath);
 
@@ -74,6 +63,7 @@ namespace UntrueRandom
                     result = lines[rndrnd];
                     int check = Convert.ToInt32(result);
                     nr++;
+
                     
 
 
@@ -88,14 +78,11 @@ namespace UntrueRandom
                     {
                         file = file + ("2 \n" + "3 \n" + "4 \n" + "5 \n");
                         File.WriteAllText(filePath, file);
-                        
                         two += 1;
                         three += 1;
                         four += 1;
                         five += 1;
-                        total += 4;
-                        numbergot = 1;
-
+                        check = 1;
                     }
                     if (check == 2)
                     {
@@ -105,8 +92,7 @@ namespace UntrueRandom
                         three += 1;
                         four += 1;
                         five += 1;
-                        total += 4;
-                        numbergot = 2;
+                        check = 2;
                     }
                     if (check == 3)
                     {
@@ -116,8 +102,7 @@ namespace UntrueRandom
                         two += 1;
                         four += 1;
                         five += 1;
-                        total += 4;
-                        numbergot = 3;
+                        check = 3;
                     }
                     if (check == 4)
                     {
@@ -127,8 +112,7 @@ namespace UntrueRandom
                         two += 1;
                         three += 1;
                         five += 1;
-                        total += 4;
-                        numbergot = 4;
+                        check = 4;
                     }
                     if (check == 5)
                     {
@@ -138,13 +122,14 @@ namespace UntrueRandom
                         two += 1;
                         three += 1;
                         four += 1;
-                        total += 4;
-                        numbergot = 5;
+                        check = 5;
                     }
-
                     
-                    if (check == 1 || check == 2 || check == 3 || check == 4 || check == 5 && numbergot != 0)
-                    Console.WriteLine("The probability your next number :");
+
+
+
+
+                    Console.WriteLine("Probability change :");
                     Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
                     Console.WriteLine("1: " + achance + " %");
                     Console.WriteLine("2: " + bchance + " %");
@@ -152,7 +137,8 @@ namespace UntrueRandom
                     Console.WriteLine("4: " + dchance + " %");
                     Console.WriteLine("5: " + echance + " %");
                     Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
-                    Console.WriteLine("your number is " + numbergot);
+                    Console.WriteLine("Result " + check);
+
 
                     stop = Console.ReadKey();
                 } while (stop.Key != ConsoleKey.Escape);
